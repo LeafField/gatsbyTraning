@@ -2,12 +2,14 @@ import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
 const index = ({ data }) => {
   return (
     <>
       <div>
         <Layout>
+          <Seo />
           <section className="hero">
             <figure>
               <Img
