@@ -9,6 +9,7 @@ module.exports = {
     lang: 'ja',
   },
   plugins: [
+
     "gatsby-plugin-sass",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -33,5 +34,14 @@ module.exports = {
       }
     },
     "gatsby-plugin-offline",
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        host: process.env.CONTENTFUL_HOST,
+      }
+    },
+    "gatsby-plugin-image",
   ]
 };
