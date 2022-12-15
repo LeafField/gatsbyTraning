@@ -9,7 +9,7 @@ module.exports = {
     lang: 'ja',
   },
   plugins: [
-
+    "gatsby-plugin-image",
     "gatsby-plugin-sass",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -42,6 +42,6 @@ module.exports = {
         host: process.env.CONTENTFUL_HOST,
       }
     },
-    "gatsby-plugin-image",
+
   ]
 };
