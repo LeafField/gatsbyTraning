@@ -1,6 +1,4 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
 import { Link } from "gatsby";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,20 +7,9 @@ import {
   faFacebook,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Footer = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      pattern: file(relativePath: { eq: "pattern.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920, quality: 90) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  `);
-
   return (
     <footer className="footer">
       <div className="container">
@@ -65,10 +52,12 @@ const Footer = () => {
         </ul>
       </div>
       <div className="back">
-        <Img
-          fluid={data.pattern.childImageSharp.fluid}
-          alt=""
+        <StaticImage
+          src="../images/pattern.jpg"
+          layout="fullWidth"
+          width={1920}
           style={{ height: "100%" }}
+          alt=""
         />
       </div>
     </footer>

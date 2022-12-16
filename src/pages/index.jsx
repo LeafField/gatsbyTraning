@@ -1,6 +1,5 @@
+import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { graphql } from "gatsby";
-import Img from "gatsby-image";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
@@ -12,9 +11,10 @@ const index = ({ data }) => {
           <Seo />
           <section className="hero">
             <figure>
-              <Img
-                fluid={data.hero.childImageSharp.fluid}
+              <StaticImage
+                src="../images/hero.jpg"
                 alt=""
+                layout="fullWidth"
                 style={{ height: "100%" }}
               />
             </figure>
@@ -47,7 +47,11 @@ const index = ({ data }) => {
               <div className="details">
                 <div className="detail">
                   <figure>
-                    <Img fluid={data.fruit.childImageSharp.fluid} alt="" />
+                    <StaticImage
+                      src="../images/fruit.jpg"
+                      width={320}
+                      layout="constrained"
+                    />
                   </figure>
                   <h3>フルーツ</h3>
                   <p>FRUIT</p>
@@ -59,7 +63,12 @@ const index = ({ data }) => {
                 </div>
                 <div className="detail">
                   <figure>
-                    <Img fluid={data.grain.childImageSharp.fluid} alt="" />
+                    <StaticImage
+                      src="../images/grain.jpg"
+                      layout="constrained"
+                      width={320}
+                      alt=""
+                    />
                   </figure>
                   <h3>穀物</h3>
                   <p>GRAIN</p>
@@ -71,7 +80,12 @@ const index = ({ data }) => {
                 </div>
                 <div className="detail">
                   <figure>
-                    <Img fluid={data.beverage.childImageSharp.fluid} alt="" />
+                    <StaticImage
+                      src="../images/beverage.jpg"
+                      layout="constrained"
+                      width={320}
+                      alt=""
+                    />
                   </figure>
                   <h3>飲み物</h3>
                   <p>BEVERAGE</p>
@@ -86,13 +100,7 @@ const index = ({ data }) => {
           </section>
           <section className="photo">
             <h2 className="sr-only">Photo</h2>
-            <figure>
-              <Img
-                fluid={data.berry.childImageSharp.fluid}
-                alt="赤く熟したベリー"
-                style={{ height: "100%" }}
-              />
-            </figure>
+            <figure></figure>
           </section>
         </Layout>
       </div>
@@ -100,44 +108,4 @@ const index = ({ data }) => {
   );
 };
 
-export const query = graphql`
-  {
-    hero: file(relativePath: { eq: "hero.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    fruit: file(relativePath: { eq: "fruit.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    grain: file(relativePath: { eq: "grain.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-    beverage: file(relativePath: { eq: "beverage.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 320) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-
-    berry: file(relativePath: { eq: "berry.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-  }
-`;
 export default index;

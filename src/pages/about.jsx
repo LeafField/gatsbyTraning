@@ -1,11 +1,10 @@
 import React from "react";
-import Img from "gatsby-image";
 import Layout from "../components/Layout";
-import { graphql } from "gatsby";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Seo from "../components/Seo";
+import { StaticImage } from "gatsby-plugin-image";
 
 const about = ({ data, location }) => {
   return (
@@ -17,10 +16,7 @@ const about = ({ data, location }) => {
       />
       <div className="eyecatch">
         <figure>
-          <Img
-            fluid={data.about.childImageSharp.fluid}
-            alt="ブルーベリー＆ヨーグルト"
-          />
+          <StaticImage src="../images/about.jpg" layout="fullWidth" alt="" />
         </figure>
       </div>
       <article className="content">
@@ -64,23 +60,5 @@ const about = ({ data, location }) => {
     </Layout>
   );
 };
-
-export const query = graphql`
-  {
-    about: file(relativePath: { eq: "about.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
-          base64
-          aspectRatio
-          sizes
-        }
-      }
-    }
-  }
-`;
 
 export default about;
