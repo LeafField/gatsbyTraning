@@ -71,10 +71,7 @@ export default blogpost;
 
 export const query = graphql`
   {
-    contentfulBlogPost(
-      title: { glob: "毎日のフルーツで爽やかさを加えて" }
-      publishDate: {}
-    ) {
+    contentfulBlogPost(title: { glob: "毎日のフルーツで爽やかさを加えて" }) {
       title
       publishDateJP: publishDate(formatString: "YYYY年MM月DD日")
       publishDate

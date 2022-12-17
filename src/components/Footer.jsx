@@ -55,7 +55,7 @@ const Footer = () => {
         <StaticImage
           src="../images/pattern.jpg"
           layout="fullWidth"
-          width={1920}
+          breakpoints={1920}
           style={{ height: "100%" }}
           alt=""
         />

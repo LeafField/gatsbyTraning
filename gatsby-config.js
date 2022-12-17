@@ -3,10 +3,6 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `My Gatsby Site`,
-    siteUrl: `https://www.yourdomain.tld`
-  },
-  siteMetadata: {
     title: `ESSENTISLS`,
     description: 'おいしい食材と食事を探求するサイト',
     siteUrl: `https://gatsby-traning.vercel.app/`,
@@ -24,7 +20,6 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       }
     },
-    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 
 const Seo = ({ pagetitle, pagedesc, pagepath }) => {
@@ -25,7 +24,7 @@ const Seo = ({ pagetitle, pagedesc, pagepath }) => {
     : data.site.siteMetadata.siteUrl;
 
   return (
-    <Helmet>
+    <>
       <html lang={data.site.siteMetadata.lang} />
       <title>{title}</title>
       <meta name="description" content={description} />
@@ -35,7 +34,7 @@ const Seo = ({ pagetitle, pagedesc, pagepath }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
-    </Helmet>
+    </>
   );
 };
 

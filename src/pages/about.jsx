@@ -6,17 +6,17 @@ import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Seo from "../components/Seo";
 import { StaticImage } from "gatsby-plugin-image";
 
-const about = ({ data, location }) => {
+const about = ({ location }) => {
   return (
     <Layout>
-      <Seo
-        pagetitle="ESSENTIALSについて"
-        pagedesc="食べ物についての情報を発信しているサイトです。"
-        pagepath={location.pathname}
-      />
       <div className="eyecatch">
         <figure>
-          <StaticImage src="../images/about.jpg" layout="fullWidth" alt="" />
+          <StaticImage
+            src="../images/about.jpg"
+            layout="fullWidth"
+            alt=""
+            breakpoints={1600}
+          />
         </figure>
       </div>
       <article className="content">
@@ -62,3 +62,10 @@ const about = ({ data, location }) => {
 };
 
 export default about;
+export const Head = ({ location }) => (
+  <Seo
+    pagetitle="ESSENTIALSについて"
+    pagedesc="食べ物についての情報を発信しているサイトです。"
+    pagepath={location.pathname}
+  />
+);

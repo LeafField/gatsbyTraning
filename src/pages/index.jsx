@@ -3,12 +3,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const index = ({ data }) => {
+const index = () => {
   return (
     <>
       <div>
         <Layout>
-          <Seo />
           <section className="hero">
             <figure>
               <StaticImage
@@ -16,6 +15,7 @@ const index = ({ data }) => {
                 alt=""
                 layout="fullWidth"
                 style={{ height: "100%" }}
+                breakpoints={1600}
               />
             </figure>
             <div className="catch">
@@ -100,7 +100,15 @@ const index = ({ data }) => {
           </section>
           <section className="photo">
             <h2 className="sr-only">Photo</h2>
-            <figure></figure>
+            <figure>
+              <StaticImage
+                src="../images/berry.jpg"
+                layout="fullWidth"
+                alt=""
+                style={{ height: "100%" }}
+                breakpoints={1600}
+              />
+            </figure>
           </section>
         </Layout>
       </div>
@@ -109,3 +117,4 @@ const index = ({ data }) => {
 };
 
 export default index;
+export const Head = () => <Seo />;
