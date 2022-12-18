@@ -9,12 +9,12 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const blog = ({ data, pageContext }) => {
+const cat = ({ data, pageContext }) => {
   return (
     <Layout>
       <section className="content bloglist">
         <div className="container">
-          <h1 className="bar">RECENT POSTS</h1>
+          <h1 className="bar">CATEGORY : {pageContext.catname}</h1>
           <div className="posts">
             {data.allContentfulBlogPost.edges.map(({ node }) => (
               <article className="post" key={node.id}>
@@ -64,14 +64,15 @@ const blog = ({ data, pageContext }) => {
   );
 };
 
-export default blog;
+export default cat;
 
 export const query = graphql`
-  query ($skip: Int!, $limit: Int!) {
+  query ($catid: String!, $skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
-      sort: { publishDate: DESC }
+      filter: { category: { elemMatch: { id: { eq: $catid } } } }
       skip: $skip
       limit: $limit
+      sort: { publishDate: DESC }
     ) {
       edges {
         node {
@@ -88,10 +89,10 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ location }) => (
+export const Head = ({ location, pageContext }) => (
   <Seo
-    pagetitle="ブログ"
-    pagedesc="ESSENTIALSのブログです"
+    pagetitle={`CATEGORY:${pageContext.catname}`}
+    pagedesc={`${pageContext.catname}カテゴリーの記事です`}
     pagepath={location.pathname}
   />
 );

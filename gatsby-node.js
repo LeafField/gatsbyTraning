@@ -20,6 +20,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     }
+    allContentfulCategory {
+      edges {
+        node {
+          id
+          categorySlug
+          category
+        }
+      }
+    }
   }
   `)
 
@@ -50,11 +59,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       path: i === 0 ? `/blog/` : `/blog/${i + 1}/`,
       component: path.resolve('./src/templates/blog-template.jsx'),
       context: {
-        slip: blogPostsPerPage * i,
+        skip: blogPostsPerPage * i,
         limit: blogPostsPerPage,
         currentPage: i + 1,
         isFirst: i + 1 === 1,
         isLast: i + 1 === blogPages
+      }
+    })
+  })
+
+  blogresult.data.allContentfulCategory.edges.forEach(({ node }) => {
+    createPage({
+      path: `/cat/${node.categorySlug}`,
+      component: path.resolve('./src/templates/cat-template.jsx'),
+      context: {
+        catid: node.id,
+        catname: node.category,
+        skip: 0,
+        limit: 100,
+        currentPage: 1,
+        isFirst: true,
+        isLast: true,
       }
     })
   })
