@@ -1,9 +1,10 @@
-import { StaticImage } from "gatsby-plugin-image";
+import { graphql, Link } from "gatsby";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const index = () => {
+const index = ({ data }) => {
   return (
     <>
       <div>
@@ -110,6 +111,28 @@ const index = () => {
               />
             </figure>
           </section>
+
+          <section>
+            <div className="container">
+              <h2 className="bar">RECENT POSTS</h2>
+              <div className="posts">
+                {data.allContentfulBlogPost.edges.map(({ node }) => (
+                  <article className="post" key={node.id}>
+                    <Link to={`/blog/post/${node.slug}`}>
+                      <figure>
+                        <GatsbyImage
+                          image={node.eyecatch.gatsbyImageData}
+                          alt={node.eyecatch.description}
+                          style={{ height: "100%", width: "100%" }}
+                        />
+                      </figure>
+                      <h3>{node.title}</h3>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
         </Layout>
       </div>
     </>
@@ -118,3 +141,19 @@ const index = () => {
 
 export default index;
 export const Head = () => <Seo />;
+export const query = graphql`
+  {
+    allContentfulBlogPost(skip: 0, limit: 4, sort: { publishDate: DESC }) {
+      edges {
+        node {
+          title
+          slug
+          eyecatch {
+            gatsbyImageData(layout: CONSTRAINED, width: 573)
+            description
+          }
+        }
+      }
+    }
+  }
+`;

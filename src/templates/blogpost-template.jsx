@@ -12,6 +12,7 @@ import {
 import { GatsbyImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS } from "@contentful/rich-text-types";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import Seo from "../components/Seo";
 
 const options = {
@@ -136,5 +137,11 @@ export const query = graphql`
 `;
 
 export const Head = ({ data, location }) => (
-  <Seo pagetitle={data.contentfulBlogPost.title} pagepath={location.pathname} />
+  <Seo
+    pagetitle={data.contentfulBlogPost.title}
+    pagepath={location.pathname}
+    pagedesc={`${documentToPlainTextString(
+      JSON.parse(data.contentfulBlogPost.content.raw)
+    ).slice(0, 70)}…`}
+  />
 );
